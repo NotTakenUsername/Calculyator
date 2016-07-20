@@ -6,19 +6,30 @@ import java.util.List;
  */
 public class ParseInput {
 
-   public List<Double> getDouble(String input){
-       Double[] numbers = null;
-       List<Double> doubleArrayList = new ArrayList<Double>();
+   public List<Double> stringToDouble(String input){
+       List<Double> result = new ArrayList<Double>();
+       boolean isNegative=false;
 
-       //разделим ввод. оператор выступит разделителем
-       String[] parseString = input.split("[+,-,/,*]");
+      if (input.startsWith("-")) {
+          input = input.substring(1,input.length());
+          isNegative = true;
+
+      }
+
+       String[] parseString = input.split("[+,\\-,/,*]");
 
        //заполним список стринговыми значениями чисел
        for (int i=0;i<parseString.length; i++ ) {
-           doubleArrayList.add(i,Double.parseDouble(parseString[i]));
+
+           result.add(i,Double.parseDouble(parseString[i]));
+       }
+       if (isNegative){
+           result.set(0, -1.0*result.get(0));
+
        }
 
-        return doubleArrayList;
+
+        return result;
 
    }
 }

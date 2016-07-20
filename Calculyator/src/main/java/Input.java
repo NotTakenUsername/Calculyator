@@ -9,11 +9,12 @@ public class Input {
          Scanner in = new Scanner(System.in);
          String input = in.nextLine();
 
-        if(input.matches("[-]*[0-9]*[.]*[0-9][/,*,+,-][0-9]*[.]*[0-9]")){
+        if(input.matches("[-]{0,1}[0-9]*[.]{0,1}[0-9]*([/,*,+,-][0-9]*[.]{0,1}[0-9]*)*")){
             this.input = input;
         }
         else {
             System.out.println(input);
+            Validator.setIsValid(false);
         }
     }
 
